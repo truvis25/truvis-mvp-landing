@@ -1,6 +1,5 @@
-import {NextStudio} from 'next-sanity/studio'
-import config from '@/sanity.config'
 import {projectId} from '@/sanity/env'
+import StudioClient from './StudioClient'
 
 export default function StudioPage() {
   if (!projectId) {
@@ -59,5 +58,5 @@ export default function StudioPage() {
     )
   }
 
-  return <NextStudio config={config} />
+  return <StudioClient />
 }
