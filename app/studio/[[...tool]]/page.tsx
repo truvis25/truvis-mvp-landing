@@ -1,13 +1,9 @@
-'use client'
-
-import {NextStudio} from 'next-sanity/studio/client-component'
+import {NextStudio} from 'next-sanity/studio'
 import config from '@/sanity.config'
+import {projectId} from '@/sanity/env'
 
 export default function StudioPage() {
-  // Check if project ID is properly configured
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-  
-  if (!projectId || projectId === 'your-project-id') {
+  if (!projectId) {
     return (
       <div style={{
         display: 'flex',
@@ -38,7 +34,7 @@ export default function StudioPage() {
           }}>
             <p style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>Steps to configure:</p>
             <ol style={{paddingLeft: '1.5rem', lineHeight: '1.6'}}>
-              <li>Create a Sanity project at <a href="https://www.sanity.io/manage" target="_blank" style={{color: '#0066cc'}}>sanity.io/manage</a></li>
+              <li>Create a Sanity project at <a href="https://www.sanity.io/manage" target="_blank" rel="noreferrer" style={{color: '#0066cc'}}>sanity.io/manage</a></li>
               <li>Copy your project ID from the project settings</li>
               <li>Add it to your environment:
                 <pre style={{
@@ -56,7 +52,7 @@ export default function StudioPage() {
             </ol>
           </div>
           <p style={{fontSize: '0.875rem', color: '#999'}}>
-            Need help? Check the <a href="https://www.sanity.io/docs" target="_blank" style={{color: '#0066cc'}}>Sanity documentation</a>
+            Need help? Check the <a href="https://www.sanity.io/docs" target="_blank" rel="noreferrer" style={{color: '#0066cc'}}>Sanity documentation</a>
           </p>
         </div>
       </div>
