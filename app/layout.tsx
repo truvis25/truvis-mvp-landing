@@ -1,16 +1,4 @@
-import type { Metadata } from 'next'
 import './globals.css'
-
-export const metadata: Metadata = {
-  title: 'MVP in 6 Weeks | TruVis Tech',
-  description:
-    'Full-stack MVP development in 6 weeks. Fixed price. Production-ready. For startups in regulated sectors: corporate structure and regulatory pathway in parallel. UAE, UK, US, Africa.',
-  openGraph: {
-    title: 'MVP in 6 Weeks | TruVis Tech',
-    description: 'Full-stack MVP development in 6 weeks. Fixed price. Production-ready.',
-    type: 'website',
-  },
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

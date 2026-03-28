@@ -1,6 +1,16 @@
 import ContactForm from '@/components/ContactForm'
+import RichHeading from '@/components/RichHeading'
+import { splitLines } from '@/lib/landing-page/helpers'
+import type { CtaSectionContent } from '@/lib/landing-page/types'
 
-export default function CTA() {
+interface CTAProps {
+  content: CtaSectionContent
+}
+
+export default function CTA({ content }: CTAProps) {
+  const descriptionLines = splitLines(content.description)
+  const officeParts = splitLines(content.officeLine.split('·').join('\n'))
+
   return (
     <section
       id="contact"
@@ -16,23 +26,24 @@ export default function CTA() {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: copy */}
           <div>
-            <span className="section-eyebrow text-brand-cyan">Next Steps</span>
-            <h2
+            <span className="section-eyebrow text-brand-cyan">{content.eyebrow}</span>
+            <RichHeading
+              as="h2"
               className="font-montserrat font-black text-white leading-[1.08] mb-6"
               style={{ fontSize: 'clamp(32px, 5vw, 52px)' }}
-            >
-              Schedule a
-              <br />
-              30-minute briefing.
-            </h2>
+              text={content.title}
+            />
             <p className="text-[18px] text-white/60 leading-relaxed mb-8 max-w-[460px]">
-              We&apos;ll tell you within the call whether this engagement is the right fit for your
-              situation. If it&apos;s not, we&apos;ll tell you that too — and point you toward what
-              would be better.
+              {descriptionLines.map((line, index) => (
+                <span key={`${line}-${index}`}>
+                  {line}
+                  {index < descriptionLines.length - 1 ? <br /> : null}
+                </span>
+              ))}
             </p>
 
             <div className="space-y-3 mb-10">
-              {['30 minutes', 'No commitment', 'Response within 2 business days'].map((item) => (
+              {content.bullets.map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan flex-shrink-0" />
                   <span className="text-sm text-brand-cyan font-medium">{item}</span>
@@ -42,23 +53,24 @@ export default function CTA() {
 
             <div className="pt-8 border-t border-white/10">
               <p className="text-[13px] text-white/30 leading-relaxed">
-                <strong className="text-white/50">TruVis International Services</strong>
-                &nbsp;·&nbsp; Etihad Towers, Abu Dhabi (ADGM)
-                &nbsp;·&nbsp; London &nbsp;·&nbsp; New York &nbsp;·&nbsp; Nairobi
-                &nbsp;·&nbsp; truvisintl.com
+                {officeParts.map((part, index) => (
+                  <span key={`${part}-${index}`}>
+                    {part}
+                    {index < officeParts.length - 1 ? ' · ' : null}
+                  </span>
+                ))}
               </p>
             </div>
           </div>
 
           {/* Right: form */}
           <div className="bg-white rounded-xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] p-8">
-            <span className="section-eyebrow text-azure">TruVis Tech · Briefing Request</span>
+            <span className="section-eyebrow text-azure">{content.formEyebrow}</span>
             <h3 className="font-montserrat font-bold text-xl text-navy mb-2">
-              Schedule a 30-minute briefing
+              {content.formTitle}
             </h3>
             <p className="text-sm text-slate-500 mb-6 leading-relaxed">
-              We confirm within 2 business days. A briefing can typically be arranged within
-              the same week.
+              {content.formDescription}
             </p>
             <ContactForm />
           </div>
