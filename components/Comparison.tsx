@@ -1,6 +1,6 @@
 const rows = [
   {
-    agency: 'Builds what's in the brief. Does not challenge it.',
+    agency: "Builds what's in the brief. Does not challenge it.",
     truvis: 'Challenges the brief before building. Discovery exists to catch the assumptions that cause rebuilds.',
   },
   {

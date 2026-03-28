@@ -21,8 +21,8 @@ const config: Config = {
         divider: '#D0D5DD',
       },
       fontFamily: {
-        montserrat: ['var(--font-montserrat)', 'sans-serif'],
-        inter: ['var(--font-inter)', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
     },
   },
