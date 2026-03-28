@@ -10,7 +10,7 @@ export default defineConfig({
   name: 'default',
   title: 'TruVis CMS',
   basePath: '/studio',
-  projectId: projectId || 'YOUR_PROJECT_ID',
+  projectId: projectId || 'missing-project-id',
   dataset,
   apiVersion,
   plugins: [structureTool({structure}), visionTool()],
