@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 font-montserrat font-bold text-sm px-6 py-3 rounded-md cursor-pointer no-underline transition-all duration-200 whitespace-nowrap border-0 leading-none;
+  }
+  .btn-primary {
+    @apply btn bg-navy text-white hover:bg-[#034070] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(2,48,89,0.3)];
+  }
+  .btn-outline-navy {
+    @apply btn bg-transparent text-navy border border-navy hover:bg-navy hover:text-white hover:-translate-y-px;
+  }
+  .btn-white {
+    @apply btn bg-white text-navy hover:bg-ice hover:-translate-y-px hover:shadow-md;
+  }
+  .btn-lg {
+    @apply !text-base !px-9 !py-4;
+  }
+  .section-eyebrow {
+    @apply font-montserrat font-bold text-[11px] tracking-[2.5px] uppercase text-azure mb-4 block;
+  }
+  .section-h2 {
+    @apply font-montserrat font-extrabold text-navy leading-[1.1] mb-4;
+  }
+  .section-intro {
+    @apply text-lg text-charcoal leading-[1.7] max-w-[620px] mb-12;
+  }
+  .card-top-accent {
+    @apply border border-divider border-t-[3px] border-t-azure rounded-b-lg;
+  }
+}
+
+/* Hero entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease both;
+}
+
+.anim-delay-1 { animation-delay: 0.1s; }
+.anim-delay-2 { animation-delay: 0.25s; }
+.anim-delay-3 { animation-delay: 0.4s; }
+.anim-delay-4 { animation-delay: 0.5s; }
+.anim-delay-5 { animation-delay: 0.6s; }
+.anim-delay-6 { animation-delay: 0.75s; }
+
+/* Subtle grid overlay for dark sections */
+.bg-grid-lines {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Process strip scrollbar hide */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
