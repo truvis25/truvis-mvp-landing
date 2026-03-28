@@ -1,20 +1,5 @@
 import type { Metadata } from 'next'
-import { Montserrat, Inter } from 'next/font/google'
 import './globals.css'
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  weight: ['300', '400', '500', '600'],
-})
 
 export const metadata: Metadata = {
   title: 'MVP in 6 Weeks | TruVis Tech',
@@ -30,7 +15,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} ${inter.variable} font-inter text-charcoal bg-white`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-inter text-charcoal bg-white">
         {children}
       </body>
     </html>
