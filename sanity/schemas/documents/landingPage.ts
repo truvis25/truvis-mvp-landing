@@ -1,0 +1,417 @@
+import {defineArrayMember, defineField, defineType} from 'sanity'
+
+export const landingPage = defineType({
+  name: 'landingPage',
+  title: 'Landing Page',
+  type: 'document',
+  preview: {
+    prepare: () => ({
+      title: 'Landing Page',
+      subtitle: 'Homepage singleton document',
+    }),
+  },
+  fields: [
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+    }),
+    defineField({
+      name: 'navbar',
+      title: 'Navbar',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'brandName',
+          title: 'Brand name',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'links',
+          title: 'Navigation links',
+          type: 'array',
+          of: [defineArrayMember({type: 'linkItem'})],
+        }),
+        defineField({
+          name: 'ctaText',
+          title: 'CTA text',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'ctaHref',
+          title: 'CTA href',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'hero',
+      title: 'Hero',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'eyebrow',
+          title: 'Eyebrow',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'text',
+          rows: 4,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'highlightedText',
+          title: 'Highlighted title text',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'subDescription',
+          title: 'Sub description',
+          type: 'text',
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'tags',
+          title: 'Hero tags',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+        }),
+        defineField({
+          name: 'ctaText',
+          title: 'CTA text',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'ctaHref',
+          title: 'CTA href',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'disclaimer',
+          title: 'Disclaimer',
+          type: 'text',
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'formEyebrow',
+          title: 'Form eyebrow',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'formTitle',
+          title: 'Form title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'formDescription',
+          title: 'Form description',
+          type: 'text',
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'proofStats',
+      title: 'Proof stats',
+      type: 'array',
+      of: [defineArrayMember({type: 'proofStat'})],
+    }),
+    defineField({
+      name: 'problem',
+      title: 'Problem section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'patterns',
+          title: 'Patterns',
+          type: 'array',
+          of: [defineArrayMember({type: 'problemPattern'})],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'solution',
+      title: 'Solution section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'pillars',
+          title: 'Pillars',
+          type: 'array',
+          of: [defineArrayMember({type: 'solutionPillar'})],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'process',
+      title: 'Process section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'steps',
+          title: 'Process steps',
+          type: 'array',
+          of: [defineArrayMember({type: 'processStep'})],
+        }),
+        defineField({
+          name: 'ctaText',
+          title: 'CTA text',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'ctaHref',
+          title: 'CTA href',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'comparison',
+      title: 'Comparison section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'agencyHeading',
+          title: 'Agency heading',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'truvisHeading',
+          title: 'TruVis heading',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'rows',
+          title: 'Rows',
+          type: 'array',
+          of: [defineArrayMember({type: 'comparisonRow'})],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'useCases',
+      title: 'Use cases section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'rightTitle',
+          title: 'Right fit title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'notRightTitle',
+          title: 'Not right fit title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'rightFor',
+          title: 'Right fit bullets',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+        }),
+        defineField({
+          name: 'notFor',
+          title: 'Not right bullets',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'deliverables',
+      title: 'Deliverables section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'items',
+          title: 'Deliverables',
+          type: 'array',
+          of: [defineArrayMember({type: 'deliverableItem'})],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'team',
+      title: 'Team section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'members',
+          title: 'Team members',
+          type: 'array',
+          of: [defineArrayMember({type: 'teamMember'})],
+        }),
+        defineField({
+          name: 'ctaText',
+          title: 'CTA text',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'ctaHref',
+          title: 'CTA href',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'pricing',
+      title: 'Pricing section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'milestones',
+          title: 'Milestones',
+          type: 'array',
+          of: [defineArrayMember({type: 'pricingMilestone'})],
+        }),
+        defineField({
+          name: 'packages',
+          title: 'Pricing packages',
+          type: 'array',
+          of: [defineArrayMember({type: 'pricingPackage'})],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'portfolio',
+      title: 'Portfolio section',
+      type: 'object',
+      fields: [
+        defineField({name: 'intro', title: 'Intro', type: 'sharedSectionIntro'}),
+        defineField({
+          name: 'items',
+          title: 'Portfolio items',
+          type: 'array',
+          of: [defineArrayMember({type: 'portfolioItem'})],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'cta',
+      title: 'Final CTA section',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'eyebrow',
+          title: 'Eyebrow',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'text',
+          rows: 4,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          rows: 4,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'bullets',
+          title: 'Bullets',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+        }),
+        defineField({
+          name: 'officeLine',
+          title: 'Office line',
+          type: 'text',
+          rows: 2,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'formEyebrow',
+          title: 'Form eyebrow',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'formTitle',
+          title: 'Form title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'formDescription',
+          title: 'Form description',
+          type: 'text',
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'footer',
+      title: 'Footer',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'companyName',
+          title: 'Company name',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'tagline',
+          title: 'Tagline',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'motto',
+          title: 'Motto',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'copyrightPrefix',
+          title: 'Copyright prefix',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+  ],
+})

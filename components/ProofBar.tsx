@@ -1,12 +1,10 @@
-const stats = [
-  { stat: 'Google-trained', label: 'Engineers' },
-  { stat: '3.9B devices', label: 'Android OS deployment' },
-  { stat: '9+ years', label: 'Scalable backend systems' },
-  { stat: '130M+ records', label: 'Production platforms' },
-  { stat: 'UAE · UK · US · Africa', label: 'Geographies served' },
-]
+import type { ProofStat } from '@/lib/landing-page/types'
 
-export default function ProofBar() {
+interface ProofBarProps {
+  stats: ProofStat[]
+}
+
+export default function ProofBar({ stats }: ProofBarProps) {
   return (
     <div className="bg-white border-b border-divider py-6 px-8">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center divide-x divide-divider">

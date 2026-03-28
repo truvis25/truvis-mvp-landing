@@ -2,8 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import type { NavbarContent } from '@/lib/landing-page/types'
 
-export default function Navbar() {
+interface NavbarProps {
+  content: NavbarContent
+}
+
+export default function Navbar({ content }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -26,36 +31,23 @@ export default function Navbar() {
           scrolled ? 'text-navy' : 'text-white'
         }`}
       >
-        TruVis Tech
+        {content.brandName}
       </Link>
 
       <div className="flex items-center gap-8">
-        <Link
-          href="#process"
-          className={`hidden md:block text-sm font-medium transition-colors duration-200 hover:text-azure ${
-            scrolled ? 'text-slate-500' : 'text-white/70'
-          }`}
-        >
-          How It Works
-        </Link>
-        <Link
-          href="#team"
-          className={`hidden md:block text-sm font-medium transition-colors duration-200 hover:text-azure ${
-            scrolled ? 'text-slate-500' : 'text-white/70'
-          }`}
-        >
-          Team
-        </Link>
-        <Link
-          href="#portfolio"
-          className={`hidden md:block text-sm font-medium transition-colors duration-200 hover:text-azure ${
-            scrolled ? 'text-slate-500' : 'text-white/70'
-          }`}
-        >
-          Portfolio
-        </Link>
-        <a href="#contact" className="btn-primary">
-          Schedule a Briefing
+        {content.links.map((link) => (
+          <Link
+            key={`${link.label}-${link.href}`}
+            href={link.href}
+            className={`hidden md:block text-sm font-medium transition-colors duration-200 hover:text-azure ${
+              scrolled ? 'text-slate-500' : 'text-white/70'
+            }`}
+          >
+            {link.label}
+          </Link>
+        ))}
+        <a href={content.ctaHref} className="btn-primary">
+          {content.ctaText}
         </a>
       </div>
     </nav>
