@@ -6,12 +6,12 @@ interface ProofBarProps {
 
 export default function ProofBar({ stats }: ProofBarProps) {
   return (
-    <div className="bg-white border-b border-divider py-6 px-8">
-      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center divide-x divide-divider">
+    <div className="bg-white border-b border-divider py-6">
+      <div className="section-container flex flex-wrap items-center justify-center divide-x divide-divider max-sm:block max-sm:divide-x-0">
         {stats.map(({ stat, label }) => (
           <div
             key={label}
-            className="flex flex-col items-center text-center px-7 py-2 last:border-r-0 sm:border-r-0 md:border-r"
+            className="flex flex-col items-center text-center px-7 py-2 max-sm:px-5 max-sm:py-3 max-sm:border-b max-sm:border-divider max-sm:last:border-b-0"
           >
             <span className="font-montserrat font-extrabold text-[15px] text-navy mb-0.5">
               {stat}

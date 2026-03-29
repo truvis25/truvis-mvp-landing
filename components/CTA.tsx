@@ -1,4 +1,3 @@
-import ContactForm from '@/components/ContactForm'
 import RichHeading from '@/components/RichHeading'
 import { splitLines } from '@/lib/landing-page/helpers'
 import type { CtaSectionContent } from '@/lib/landing-page/types'
@@ -14,7 +13,7 @@ export default function CTA({ content }: CTAProps) {
   return (
     <section
       id="contact"
-      className="relative py-24 px-8 overflow-hidden"
+      className="relative section-shell overflow-hidden"
       style={{
         background:
           'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(10,126,232,0.08) 0%, transparent 70%), #0D1B2E',
@@ -22,8 +21,8 @@ export default function CTA({ content }: CTAProps) {
     >
       <div className="absolute inset-0 bg-grid-lines pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <div className="relative section-container">
+        <div className="section-header reveal max-w-[760px]">
           {/* Left: copy */}
           <div>
             <span className="section-eyebrow text-brand-cyan">{content.eyebrow}</span>
@@ -51,6 +50,10 @@ export default function CTA({ content }: CTAProps) {
               ))}
             </div>
 
+            <button type="button" data-open-modal data-cta="final" className="btn-white btn-lg mb-10">
+              Schedule a Briefing →
+            </button>
+
             <div className="pt-8 border-t border-white/10">
               <p className="text-[13px] text-white/30 leading-relaxed">
                 {officeParts.map((part, index) => (
@@ -61,18 +64,6 @@ export default function CTA({ content }: CTAProps) {
                 ))}
               </p>
             </div>
-          </div>
-
-          {/* Right: form */}
-          <div className="bg-white rounded-xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] p-8">
-            <span className="section-eyebrow text-azure">{content.formEyebrow}</span>
-            <h3 className="font-montserrat font-bold text-xl text-navy mb-2">
-              {content.formTitle}
-            </h3>
-            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
-              {content.formDescription}
-            </p>
-            <ContactForm />
           </div>
         </div>
       </div>

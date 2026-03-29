@@ -1,5 +1,3 @@
-import ContactForm from '@/components/ContactForm'
-import RichHeading from '@/components/RichHeading'
 import { splitLines } from '@/lib/landing-page/helpers'
 import type { HeroContent } from '@/lib/landing-page/types'
 
@@ -10,11 +8,12 @@ interface HeroProps {
 export default function Hero({ content }: HeroProps) {
   const descriptionLines = splitLines(content.description)
   const disclaimerLines = splitLines(content.disclaimer)
+  const titleLines = splitLines(content.title)
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center pt-[68px] overflow-hidden"
+      className="relative min-h-screen flex items-center pt-[68px] overflow-hidden section-shell"
       style={{
         background:
           'radial-gradient(ellipse 65% 70% at 75% 50%, rgba(10,126,232,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 15% 80%, rgba(5,175,242,0.05) 0%, transparent 60%), #0D1B2E',
@@ -23,23 +22,23 @@ export default function Hero({ content }: HeroProps) {
       {/* Grid lines overlay */}
       <div className="absolute inset-0 bg-grid-lines pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-8 py-20 w-full">
-        <div className="grid lg:grid-cols-[1fr_420px] gap-16 items-center">
-
-          {/* Left: Copy */}
-          <div>
+      <div className="relative section-container py-20 w-full">
+        <div className="grid gap-16 items-center">
+          <div className="max-w-[760px]">
             <span className="animate-fade-in-up anim-delay-1 section-eyebrow text-brand-cyan">
               {content.eyebrow}
             </span>
 
-            <RichHeading
-              as="h1"
-              className="animate-fade-in-up anim-delay-2 font-montserrat font-black text-white leading-[1.08] mb-6"
-              text={content.title}
-              highlightText={content.highlightedText}
-              highlightClassName="text-azure"
+            <h1
+              className="animate-fade-in-up anim-delay-2 font-montserrat font-black leading-[1.08] mb-6"
               style={{ fontSize: 'clamp(40px, 6vw, 68px)' }}
-            />
+            >
+              <span className="line1 block text-white">{titleLines[0]}</span>
+              <span className="line2 block text-white">{titleLines[1]}</span>
+              <span className="line3 block" style={{color: '#0A7EE8'}}>
+                {titleLines[2]}
+              </span>
+            </h1>
 
             <p className="animate-fade-in-up anim-delay-3 text-white/75 leading-relaxed mb-4 max-w-[520px]"
                style={{ fontSize: 'clamp(16px, 2vw, 19px)' }}>
@@ -68,9 +67,9 @@ export default function Hero({ content }: HeroProps) {
             </div>
 
             <div className="animate-fade-in-up anim-delay-5 flex flex-col gap-3 items-start">
-              <a href={content.ctaHref} className="btn-white btn-lg">
+              <button type="button" data-open-modal data-cta="hero" className="btn-white btn-lg hero-cta">
                 {content.ctaText}
-              </a>
+              </button>
               <p className="text-xs text-slate-500 italic">
                 {disclaimerLines.map((line, index) => (
                   <span key={`${line}-${index}`}>
@@ -81,21 +80,6 @@ export default function Hero({ content }: HeroProps) {
               </p>
             </div>
           </div>
-
-          {/* Right: Form */}
-          <div className="animate-fade-in-up anim-delay-6">
-            <div className="bg-white rounded-xl shadow-[0_24px_80px_rgba(0,0,0,0.35)] p-8">
-              <span className="section-eyebrow text-azure mb-2">{content.formEyebrow}</span>
-              <h2 className="font-montserrat font-bold text-xl text-navy mb-2">
-                {content.formTitle}
-              </h2>
-              <p className="text-sm text-slate-500 mb-6 leading-relaxed">
-                {content.formDescription}
-              </p>
-              <ContactForm />
-            </div>
-          </div>
-
         </div>
       </div>
     </section>

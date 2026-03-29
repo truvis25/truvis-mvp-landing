@@ -1,16 +1,17 @@
 import CmsImage from '@/components/CmsImage'
 import RichHeading from '@/components/RichHeading'
-import type { PortfolioSectionContent } from '@/lib/landing-page/types'
+import type { PortfolioDetailCard, PortfolioSectionContent } from '@/lib/landing-page/types'
 
 interface PortfolioProps {
   content: PortfolioSectionContent
+  details: PortfolioDetailCard[]
 }
 
-export default function Portfolio({ content }: PortfolioProps) {
+export default function Portfolio({ content, details }: PortfolioProps) {
   return (
-    <section id="portfolio" className="py-24 px-8 bg-ice">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
+    <section id="portfolio" className="section-shell bg-ice">
+      <div className="section-container">
+        <div className="section-header reveal">
           <span className="section-eyebrow">{content.eyebrow}</span>
           <RichHeading
             as="h2"
@@ -23,7 +24,7 @@ export default function Portfolio({ content }: PortfolioProps) {
           </p>
         </div>
 
-        <div className="overflow-x-auto rounded-lg shadow-sm">
+        <div className="overflow-x-auto rounded-lg shadow-sm reveal">
           <table className="w-full border-collapse">
             <thead>
               <tr>
@@ -62,6 +63,30 @@ export default function Portfolio({ content }: PortfolioProps) {
               ))}
             </tbody>
           </table>
+        </div>
+
+        <div className="mt-10 grid md:grid-cols-3 gap-6 reveal">
+          {details.map((card) => (
+            <article
+              key={card.title}
+              className="bg-stripe border-t-[3px] border-t-azure p-8 rounded-b-[8px]"
+            >
+              <h3 className="font-montserrat font-bold text-[18px] text-navy mb-4">{card.title}</h3>
+              <p className="text-[14px] text-charcoal leading-relaxed mb-3">
+                <strong>Built:</strong> {card.built}
+              </p>
+              <p className="text-[14px] text-charcoal leading-relaxed mb-5">
+                <strong>Outcome:</strong> {card.outcome}
+              </p>
+              <a
+                href={card.linkHref}
+                className="text-azure font-inter text-[14px] font-medium"
+                aria-label={`${card.title} project link`}
+              >
+                {card.linkText}
+              </a>
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -7,8 +7,8 @@ interface ProcessProps {
 
 export default function Process({ content }: ProcessProps) {
   return (
-    <section id="process" className="py-24 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-8 mb-12">
+    <section id="process" className="section-shell bg-white overflow-hidden">
+      <div className="section-container section-header reveal">
         <span className="section-eyebrow">{content.eyebrow}</span>
         <RichHeading
           as="h2"
@@ -22,11 +22,11 @@ export default function Process({ content }: ProcessProps) {
       </div>
 
       {/* Horizontal scrolling strip */}
-      <div className="flex overflow-x-auto scrollbar-hide px-8 gap-0 pb-2">
+      <div className="process-strip flex overflow-x-auto scrollbar-hide section-container gap-0 pb-2 reveal">
         {content.steps.map(({ label, title, points, dark }) => (
           <div
             key={label}
-            className={`flex-shrink-0 w-[220px] relative border-t-[4px] px-7 py-8 transition-shadow duration-200 hover:shadow-[0_6px_24px_rgba(2,48,89,0.08)] ${
+            className={`process-card flex-shrink-0 w-[220px] relative border-t-[4px] px-7 py-8 transition-shadow duration-200 hover:shadow-[0_6px_24px_rgba(2,48,89,0.08)] ${
               dark
                 ? 'bg-navy border-t-brand-teal'
                 : 'bg-white border-t-azure border-l border-divider first:border-l-0'
@@ -47,18 +47,22 @@ export default function Process({ content }: ProcessProps) {
               {title}
             </div>
             <ul className="space-y-1.5">
-              {points.map((pt) => (
+              {points.map((pt, index) => (
                 <li
-                  key={pt}
+                  key={`${pt}-${index}`}
                   className={`text-[13px] leading-snug pl-4 relative ${
-                    dark ? 'text-white/70' : 'text-charcoal'
+                    dark
+                      ? 'text-white/70'
+                      : pt === 'We find the issues. Not your users.'
+                        ? 'week-special-bullet !pl-0'
+                        : 'text-charcoal'
                   }`}
                 >
-                  <span
-                    className={`absolute left-0 ${dark ? 'text-brand-cyan' : 'text-azure'}`}
-                  >
-                    –
-                  </span>
+                  {pt !== 'We find the issues. Not your users.' ? (
+                    <span className={`absolute left-0 ${dark ? 'text-brand-cyan' : 'text-azure'}`}>
+                      -
+                    </span>
+                  ) : null}
                   {pt}
                 </li>
               ))}
@@ -66,11 +70,12 @@ export default function Process({ content }: ProcessProps) {
           </div>
         ))}
       </div>
+      <div className="scroll-hint">Scroll to see all 6 weeks →</div>
 
-      <div className="px-8 mt-10">
-        <a href={content.ctaHref} className="btn-primary btn-lg">
+      <div className="section-container mt-10 reveal">
+        <button type="button" data-open-modal data-cta="after-process" className="btn-primary btn-lg">
           {content.ctaText}
-        </a>
+        </button>
       </div>
     </section>
   )

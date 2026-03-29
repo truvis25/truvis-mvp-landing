@@ -7,9 +7,9 @@ interface ProblemProps {
 
 export default function Problem({ content }: ProblemProps) {
   return (
-    <section id="problem" className="py-24 px-8 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-14">
+    <section id="problem" className="section-shell bg-white">
+      <div className="section-container">
+        <div className="section-header reveal">
           <span className="section-eyebrow">{content.eyebrow}</span>
           <RichHeading
             className="section-h2"
@@ -22,7 +22,7 @@ export default function Problem({ content }: ProblemProps) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 reveal">
           {content.patterns.map(({ number, title, body }) => (
             <div
               key={number}
@@ -37,6 +37,12 @@ export default function Problem({ content }: ProblemProps) {
               <p className="text-[15px] text-slate-500 leading-[1.75]">{body}</p>
             </div>
           ))}
+        </div>
+
+        <div className="soft-cta reveal">
+          <a href="#contact" data-open-modal>
+            Talk to us about your build →
+          </a>
         </div>
       </div>
     </section>

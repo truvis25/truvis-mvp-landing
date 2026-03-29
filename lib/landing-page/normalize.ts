@@ -20,10 +20,6 @@ export function normalizeLandingPageData(input: LandingPageData): LandingPageDat
       ...input.problem,
       patterns: input.problem.patterns.filter((item) => item.number && item.title && item.body),
     },
-    solution: {
-      ...input.solution,
-      pillars: input.solution.pillars.filter((item) => item.title && item.body),
-    },
     process: {
       ...input.process,
       steps: input.process.steps
@@ -73,6 +69,9 @@ export function normalizeLandingPageData(input: LandingPageData): LandingPageDat
         (item) => item.name && item.category && item.scale && item.relevance,
       ),
     },
+    portfolioDetails: input.portfolioDetails.filter(
+      (item) => item.title && item.built && item.outcome && item.linkText,
+    ),
     cta: {
       ...input.cta,
       bullets: sanitizeStrings(input.cta.bullets),
