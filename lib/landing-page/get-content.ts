@@ -3,6 +3,7 @@ import {normalizeLandingPageData} from './normalize'
 import {landingPageQuery} from './query'
 import type {LandingPageData} from './types'
 import {sanityClient} from '@/lib/sanity/client'
+import {sanityServerClient} from '@/lib/sanity/server-client'
 
 type RawLandingPage = {
   seo?: LandingPageData['seo']
@@ -197,12 +198,14 @@ function withFallback(cms?: RawLandingPage | null): LandingPageData {
 }
 
 export async function getLandingPageContent(): Promise<LandingPageData> {
-  if (!sanityClient) {
+  const client = sanityServerClient || sanityClient
+
+  if (!client) {
     return normalizeLandingPageData(fallbackLandingPageData)
   }
 
   try {
-    const cmsData = await sanityClient.fetch<RawLandingPage | null>(landingPageQuery)
+    const cmsData = await client.fetch<RawLandingPage | null>(landingPageQuery)
     return normalizeLandingPageData(withFallback(cmsData))
   } catch {
     return normalizeLandingPageData(fallbackLandingPageData)

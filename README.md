@@ -1,52 +1,35 @@
 # truvis-mvp-landing
 
-Truvis tech - MVP Development
+TruVis Tech MVP landing page (Next.js 14 App Router) with embedded Sanity Studio.
 
-## CMS setup (Sanity)
+## Routing architecture
 
-This project now supports content editing via an embedded Sanity Studio at `/studio`.
+- Main landing page: `/`
+- Sanity Studio only: `/studio`
 
-### 1) Configure environment variables
+The Studio is isolated to `app/studio/[[...tool]]` and configured with `basePath: '/studio'` so it cannot replace the main site root.
 
-Copy `.env.example` to `.env.local` and set:
+## Sanity project
 
-- `NEXT_PUBLIC_SANITY_PROJECT_ID`
-- `NEXT_PUBLIC_SANITY_DATASET`
-- `NEXT_PUBLIC_SANITY_API_VERSION` (optional, defaults to the value in `.env.example`)
+- Project ID: `culu3ldn`
+- Dataset: `production`
 
-If these values are not set, the site falls back to built-in content so it still runs.
+## Environment variables
 
-### 2) Start the app
+Create `.env` in the project root:
 
-```bash
-npm run dev
-```
+- `SANITY_API_TOKEN` (server-side only, do not expose in browser/client code)
 
-Open:
+Optional public overrides:
 
-- Landing page: `http://localhost:3000`
-- CMS Studio: `http://localhost:3000/studio`
+- `NEXT_PUBLIC_SANITY_PROJECT_ID` (defaults to `culu3ldn`)
+- `NEXT_PUBLIC_SANITY_DATASET` (defaults to `production`)
+- `NEXT_PUBLIC_SANITY_API_VERSION` (defaults to `2026-03-28`)
 
-### 3) Create/edit landing content
+## Commands
 
-In Studio, open the **Landing Page** singleton document and edit:
-
-- headlines and paragraphs
-- CTA text/links
-- pricing content
-- proof stats
-- team members
-- portfolio items
-- comparison rows
-- process steps
-- footer content
-- SEO fields
-- images and alt text
-
-### Future content models included
-
-The schema also includes starter content types for:
-
-- `blogPost`
-- `servicePage`
-- `caseStudy`
+- Install dependencies: `npm install`
+- Run dev server: `npm run dev`
+- Lint: `npm run lint`
+- Production build: `npm run build`
+- Start production server: `npm run start`
