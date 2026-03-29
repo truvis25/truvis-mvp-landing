@@ -1,131 +1,106 @@
 'use client'
 
-import { useState, FormEvent, ChangeEvent } from 'react'
-
-interface FormData {
-  name: string
-  email: string
-  company: string
-  build: string
-}
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
 
 interface ContactFormProps {
-  dark?: boolean
+  locationLabel?: string
 }
 
-export default function ContactForm({ dark = false }: ContactFormProps) {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    company: '',
-    build: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
+interface HubSpotFormsApi {
+  create: (options: {
+    portalId: string
+    formId: string
+    region: string
+    target: string
+    formInstanceId: string
+    cssClass: string
+    onFormReady?: () => void
+  }) => void
+}
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+interface HubSpotWindow extends Window {
+  hbspt?: {
+    forms: HubSpotFormsApi
   }
+}
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log('TruVis Tech — Briefing request submitted:', formData)
-    setSubmitted(true)
-  }
+const HUBSPOT_PORTAL_ID = '146661053'
+const HUBSPOT_FORM_ID = '698de331-798f-4be7-99de-87e7c42938af'
+const HUBSPOT_REGION = 'eu1'
+const MAX_RETRIES = 40
+const RETRY_MS = 150
 
-  const labelClass = `block text-sm font-semibold mb-1.5 ${dark ? 'text-white/80' : 'text-charcoal'}`
-  const inputClass = `w-full px-4 py-3 rounded-md font-inter text-[14.5px] text-charcoal bg-white border border-divider focus:outline-none focus:border-azure transition-colors placeholder:text-slate-400`
+export default function ContactForm({ locationLabel = 'landing_page' }: ContactFormProps) {
+  const baseId = useId()
+  const targetId = useMemo(() => `hubspot-form-${baseId.replace(/:/g, '')}`, [baseId])
+  const hasCreatedFormRef = useRef(false)
+  const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading')
 
-  if (submitted) {
-    return (
-      <div className="text-center py-10 px-4">
-        <div className="text-5xl mb-5">✓</div>
-        <h3 className={`font-montserrat font-bold text-2xl mb-3 ${dark ? 'text-white' : 'text-navy'}`}>
-          Request received.
-        </h3>
-        <p className={dark ? 'text-white/60 leading-relaxed' : 'text-slate-500 leading-relaxed'}>
-          We&apos;ll be in touch within 2 business days to confirm a time.
-          <br />
-          If you have urgent questions, reach us at{' '}
-          <strong className={dark ? 'text-white/80' : 'text-navy'}>truvisintl.com</strong>
-        </p>
-      </div>
-    )
-  }
+  useEffect(() => {
+    if (hasCreatedFormRef.current) {
+      return
+    }
+
+    const createForm = () => {
+      const currentWindow = window as HubSpotWindow
+      if (!currentWindow.hbspt?.forms?.create) {
+        return false
+      }
+
+      currentWindow.hbspt.forms.create({
+        portalId: HUBSPOT_PORTAL_ID,
+        formId: HUBSPOT_FORM_ID,
+        region: HUBSPOT_REGION,
+        target: `#${targetId}`,
+        formInstanceId: `${locationLabel}-${targetId}`,
+        cssClass: 'hubspot-embedded-form',
+        onFormReady: () => setLoadState('ready'),
+      })
+
+      hasCreatedFormRef.current = true
+      return true
+    }
+
+    if (createForm()) {
+      return
+    }
+
+    let retries = 0
+    const interval = window.setInterval(() => {
+      retries += 1
+      if (createForm()) {
+        window.clearInterval(interval)
+        return
+      }
+
+      if (retries >= MAX_RETRIES) {
+        window.clearInterval(interval)
+        setLoadState('error')
+      }
+    }, RETRY_MS)
+
+    return () => {
+      window.clearInterval(interval)
+    }
+  }, [locationLabel, targetId])
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="name" className={labelClass}>
-          Full name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Your name"
-          required
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="email" className={labelClass}>
-          Email address
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="you@company.com"
-          required
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="company" className={labelClass}>
-          Company name
-        </label>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-          placeholder="Your company"
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="build" className={labelClass}>
-          What are you building?
-        </label>
-        <textarea
-          id="build"
-          name="build"
-          value={formData.build}
-          onChange={handleChange}
-          placeholder="Briefly describe your product or idea…"
-          rows={3}
-          className={`${inputClass} resize-y min-h-[80px]`}
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="btn-primary btn-lg w-full justify-center mt-2"
-      >
-        Send Briefing Request →
-      </button>
-
-      <p className="text-xs text-slate-400 text-center leading-relaxed">
+    <div className="hubspot-form-wrapper">
+      {loadState === 'loading' && (
+        <p className="text-sm text-slate-500 mb-4">Loading secure briefing form...</p>
+      )}
+      {loadState === 'error' && (
+        <p className="text-sm text-red-600 mb-4">
+          The form failed to load. Please refresh the page and try again.
+        </p>
+      )}
+      <div
+        id={targetId}
+        className={loadState === 'ready' ? '' : 'min-h-[220px]'}
+      />
+      <p className="text-xs text-slate-400 text-center leading-relaxed mt-3">
         No commitment. We&apos;ll confirm within 2 business days.
       </p>
-    </form>
+    </div>
   )
 }

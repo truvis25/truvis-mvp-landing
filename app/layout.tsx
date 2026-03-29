@@ -1,4 +1,5 @@
 import './globals.css'
+import Script from 'next/script'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-inter text-charcoal bg-white">
+        <Script
+          id="hubspot-forms-v2"
+          strategy="afterInteractive"
+          src="https://js-eu1.hsforms.net/forms/embed/v2.js"
+        />
         {children}
       </body>
     </html>
