@@ -1,5 +1,4 @@
 import RichHeading from '@/components/RichHeading'
-import { splitLines } from '@/lib/landing-page/helpers'
 import type { PricingSectionContent } from '@/lib/landing-page/types'
 
 interface PricingProps {
@@ -8,9 +7,9 @@ interface PricingProps {
 
 export default function Pricing({ content }: PricingProps) {
   return (
-    <section className="section-shell bg-white">
-      <div className="section-container">
-        <div className="section-header reveal">
+    <section className="py-24 px-8 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-12">
           <span className="section-eyebrow">{content.eyebrow}</span>
           <RichHeading
             as="h2"
@@ -24,7 +23,7 @@ export default function Pricing({ content }: PricingProps) {
         </div>
 
         {/* Milestone cards */}
-        <div className="grid md:grid-cols-3 gap-5 md:gap-6 mb-10 reveal">
+        <div className="grid md:grid-cols-3 gap-4 mb-10">
           {content.milestones.map(({ pct, trigger, desc }) => (
             <div
               key={trigger}
@@ -41,12 +40,8 @@ export default function Pricing({ content }: PricingProps) {
           ))}
         </div>
 
-        <div className="sprint-availability reveal">
-          We run three MVP sprints per quarter. <strong>Current availability: APRIL sprint.</strong>
-        </div>
-
         {/* Package details */}
-        <div className="grid md:grid-cols-2 gap-6 reveal">
+        <div className="grid md:grid-cols-2 gap-6">
           {content.packages.map(({ title, amount, items, accent }) => (
             <div
               key={title}
@@ -55,18 +50,7 @@ export default function Pricing({ content }: PricingProps) {
               } px-9 py-9`}
             >
               <h3 className="font-montserrat font-bold text-[17px] text-navy mb-1">{title}</h3>
-              {title === 'Corporate & Regulatory Track' ? (
-                <div className="font-inter text-[14px] text-brand-teal mb-5 leading-relaxed">
-                  {splitLines(amount).map((line, index, lines) => (
-                    <span key={`${line}-${index}`}>
-                      {line}
-                      {index < lines.length - 1 ? <br /> : null}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <div className="font-montserrat font-black text-[26px] text-navy mb-5">{amount}</div>
-              )}
+              <div className="font-montserrat font-black text-[26px] text-navy mb-5">{amount}</div>
               <ul className="space-y-0">
                 {items.map((item) => (
                   <li

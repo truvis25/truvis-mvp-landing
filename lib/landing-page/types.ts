@@ -58,6 +58,12 @@ export interface ProblemPattern {
   body: string
 }
 
+export interface SolutionPillar {
+  icon: string
+  title: string
+  body: string
+}
+
 export interface ProcessStep {
   label: string
   title: string
@@ -77,11 +83,9 @@ export interface DeliverableCard {
 }
 
 export interface TeamMember {
-  initials?: string
   name: string
   role: string
   badge: string
-  oneLiner?: string
   points: string[]
   featured: boolean
   photo?: CmsImageField
@@ -110,6 +114,10 @@ export interface PortfolioItem {
 
 export interface ProblemSectionContent extends IntroSectionContent {
   patterns: ProblemPattern[]
+}
+
+export interface SolutionSectionContent extends IntroSectionContent {
+  pillars: SolutionPillar[]
 }
 
 export interface ProcessSectionContent extends IntroSectionContent {
@@ -150,12 +158,16 @@ export interface PortfolioSectionContent extends IntroSectionContent {
   items: PortfolioItem[]
 }
 
-export interface PortfolioDetailCard {
+export interface TeamIntroContent {
+  eyebrow: string
   title: string
-  built: string
-  outcome: string
-  linkText: string
-  linkHref: string
+  intro: string
+}
+
+export interface TeamSectionContent extends TeamIntroContent {
+  members: TeamMember[]
+  ctaText: string
+  ctaHref: string
 }
 
 export interface CtaSectionContent {
@@ -182,6 +194,7 @@ export interface LandingPageData {
   hero: HeroContent
   proofStats: ProofStat[]
   problem: ProblemSectionContent
+  solution: SolutionSectionContent
   process: ProcessSectionContent
   comparison: ComparisonSectionContent
   useCases: UseCasesSectionContent
@@ -189,7 +202,6 @@ export interface LandingPageData {
   team: TeamSectionContent
   pricing: PricingSectionContent
   portfolio: PortfolioSectionContent
-  portfolioDetails: PortfolioDetailCard[]
   cta: CtaSectionContent
   footer: FooterContent
 }

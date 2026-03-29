@@ -52,6 +52,18 @@ export const landingPageQuery = groq`
         body
       }
     },
+    solution{
+      intro{
+        eyebrow,
+        title,
+        intro
+      },
+      pillars[]{
+        icon,
+        title,
+        body
+      }
+    },
     process{
       intro{
         eyebrow,
@@ -110,11 +122,9 @@ export const landingPageQuery = groq`
         intro
       },
       members[]{
-        initials,
         name,
         role,
         badge,
-        oneLiner,
         points[],
         featured,
         photo{
@@ -159,13 +169,6 @@ export const landingPageQuery = groq`
           image
         }
       }
-    },
-    portfolioDetails[]{
-      title,
-      built,
-      outcome,
-      linkText,
-      linkHref
     },
     cta{
       eyebrow,

@@ -18,6 +18,14 @@ type RawLandingPage = {
     }
     patterns?: LandingPageData['problem']['patterns']
   }
+  solution?: {
+    intro?: {
+      eyebrow?: string
+      title?: string
+      intro?: string
+    }
+    pillars?: LandingPageData['solution']['pillars']
+  }
   process?: {
     intro?: {
       eyebrow?: string
@@ -84,7 +92,6 @@ type RawLandingPage = {
     }
     items?: LandingPageData['portfolio']['items']
   }
-  portfolioDetails?: LandingPageData['portfolioDetails']
   cta?: LandingPageData['cta']
   footer?: LandingPageData['footer']
 }
@@ -107,6 +114,15 @@ function withFallback(cms?: RawLandingPage | null): LandingPageData {
         cms.problem?.patterns?.length
           ? cms.problem.patterns
           : fallbackLandingPageData.problem.patterns,
+    },
+    solution: {
+      eyebrow: cms.solution?.intro?.eyebrow || fallbackLandingPageData.solution.eyebrow,
+      title: cms.solution?.intro?.title || fallbackLandingPageData.solution.title,
+      intro: cms.solution?.intro?.intro || fallbackLandingPageData.solution.intro,
+      pillars:
+        cms.solution?.pillars?.length
+          ? cms.solution.pillars
+          : fallbackLandingPageData.solution.pillars,
     },
     process: {
       eyebrow: cms.process?.intro?.eyebrow || fallbackLandingPageData.process.eyebrow,
@@ -176,10 +192,6 @@ function withFallback(cms?: RawLandingPage | null): LandingPageData {
       items:
         cms.portfolio?.items?.length ? cms.portfolio.items : fallbackLandingPageData.portfolio.items,
     },
-    portfolioDetails:
-      cms.portfolioDetails?.length
-        ? cms.portfolioDetails
-        : fallbackLandingPageData.portfolioDetails,
     cta: {...fallbackLandingPageData.cta, ...(cms.cta || {})},
     footer: {...fallbackLandingPageData.footer, ...(cms.footer || {})},
   }

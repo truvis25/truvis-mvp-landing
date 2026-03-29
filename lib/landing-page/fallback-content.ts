@@ -17,12 +17,12 @@ export const fallbackLandingPageData: LandingPageData = {
       {label: 'Team', href: '#team'},
       {label: 'Portfolio', href: '#portfolio'},
     ],
-    ctaText: 'Schedule a 30-Minute Briefing →',
+    ctaText: 'Schedule a Briefing',
     ctaHref: '#contact',
   },
   hero: {
     eyebrow: 'TruVis Tech · MVP Development',
-    title: 'You have 6 weeks.\nWe have done this before.\nProduction-ready.',
+    title: "Your startup's MVP.\nBuilt in 6 weeks.",
     highlightedText: 'Production-ready.',
     description:
       'Full-stack delivery — from product strategy to deployment.\nFixed price. Complete code ownership from day one.',
@@ -41,9 +41,9 @@ export const fallbackLandingPageData: LandingPageData = {
   proofStats: [
     {stat: 'Google-trained', label: 'Engineers'},
     {stat: '3.9B devices', label: 'Android OS deployment'},
-    {stat: '9+ years', label: 'Zero failed production deployments'},
+    {stat: '9+ years', label: 'Scalable backend systems'},
     {stat: '130M+ records', label: 'Production platforms'},
-    {stat: 'Founders in 4 continents', label: '17+ jurisdictions'},
+    {stat: 'UAE · UK · US · Africa', label: 'Geographies served'},
   ],
   problem: {
     eyebrow: 'Why Most MVPs Fail',
@@ -65,6 +65,34 @@ export const fallbackLandingPageData: LandingPageData = {
         number: 'Pattern 03',
         title: 'Four vendors. Zero accountability.',
         body: 'A software agency. A law firm. A compliance consultant. A licensing advisor. Each protecting their own scope. Every handoff creating delay. The founder absorbing the coordination cost while the runway burns. This is the standard configuration — and the one that causes the most unnecessary rebuilds.',
+      },
+    ],
+  },
+  solution: {
+    eyebrow: 'The TruVis Approach',
+    title: 'One team. Strategy to deployment.',
+    intro:
+      'Most MVP failures are process failures. We have re-engineered the process around four non-negotiables that eliminate the gaps other studios leave open.',
+    pillars: [
+      {
+        icon: '⟨/⟩',
+        title: 'Architecture before code',
+        body: 'Week 1 is discovery. Scope and architecture are agreed in writing before a single line of code is written. Every assumption is tested. No build begins without your sign-off.',
+      },
+      {
+        icon: '⚖',
+        title: 'Compliance built in from day one',
+        body: 'For regulated sectors, legal and compliance requirements shape the architecture in Week 1 — not after launch. No rebuild. No gap for the founder to manage.',
+      },
+      {
+        icon: '◈',
+        title: 'Named senior engineers throughout',
+        body: 'The same engineers who scope your product in Week 1 deploy it in Week 6. No handoffs. No offshore sub-teams. No account manager layer. Direct contact throughout.',
+      },
+      {
+        icon: '◉',
+        title: 'Fixed scope. Fixed price.',
+        body: 'Price is agreed before build begins. The only thing that changes the price is a change to the agreed scope — which requires written approval from both parties before any work proceeds.',
       },
     ],
   },
@@ -97,24 +125,13 @@ export const fallbackLandingPageData: LandingPageData = {
         dark: false,
       },
       {
-        label: 'Week 3',
+        label: 'Weeks 3–4',
         title: 'Core Development',
         points: [
           'Sprint-based build',
           'Working demos every 72 hrs',
           'API integrations built',
-          'Frontend and backend integrated',
-        ],
-        dark: false,
-      },
-      {
-        label: 'Week 4',
-        title: 'Feature Completion',
-        points: [
-          'Sprint-based build',
-          'Working demos every 72 hrs',
-          'API integrations completed',
-          'Working product. Not status updates.',
+          'Real product — not reports',
         ],
         dark: false,
       },
@@ -125,7 +142,7 @@ export const fallbackLandingPageData: LandingPageData = {
           'Full functional testing',
           'Load & security review',
           'All issues resolved',
-          'We find the issues. Not your users.',
+          'We find the issues — not your users',
         ],
         dark: false,
       },
@@ -145,11 +162,11 @@ export const fallbackLandingPageData: LandingPageData = {
     ctaHref: '#contact',
   },
   comparison: {
-    eyebrow: 'What Makes This Different',
+    eyebrow: 'Differentiation',
     title: 'Not another agency.\nA different model entirely.',
     intro: '',
     agencyHeading: 'Typical Agency Model',
-    truvisHeading: 'TruVis Tech',
+    truvisHeading: 'TruVis Tech Model',
     rows: [
       {
         agency: "Builds what's in the brief. Does not challenge it.",
@@ -179,7 +196,7 @@ export const fallbackLandingPageData: LandingPageData = {
       {
         agency: 'Post-launch support quoted separately. Premium rates.',
         truvis:
-          '30-day post-launch support included. Production-critical issues addressed within 4 hours.',
+          '30-day post-launch support included. Production issues: 4-hour response guarantee.',
       },
       {
         agency: 'Fixed price eroded by scope change billing.',
@@ -189,7 +206,7 @@ export const fallbackLandingPageData: LandingPageData = {
     ],
   },
   useCases: {
-    eyebrow: 'Who This Is Built For',
+    eyebrow: 'Use Cases & Fit',
     title: 'Designed for a specific situation.',
     intro: 'Being direct about fit protects your time and ours.',
     rightTitle: '✓  Right for this engagement',
@@ -214,45 +231,45 @@ export const fallbackLandingPageData: LandingPageData = {
     eyebrow: 'What You Own',
     title: 'You own everything.\nFrom day one.',
     intro:
-      'Complete, unconditional transfer of every asset built. No conditions. No lock-in. Our access formally revoked at close. Most firms call this handover. We call it the confirmation that you no longer need us.',
+      'At the end of the engagement: a complete, unconditional transfer of every asset built. No conditions. No lock-in. Our access formally revoked at close.',
     items: [
       {
-        icon: 'sourceCode',
+        icon: '⟨/⟩',
         title: 'Source Code Repository',
         body: 'Complete Git history under your account from day one. No end-of-project snapshot delivery.',
       },
       {
-        icon: 'apiSpec',
+        icon: '⚡',
         title: 'API Specification',
         body: 'Every endpoint documented. Request/response schemas, authentication, error codes — readable in Swagger.',
       },
       {
-        icon: 'architecture',
+        icon: '⬡',
         title: 'Architecture Record',
         body: 'What was built, why it was built that way, and what alternatives were considered.',
       },
       {
-        icon: 'database',
+        icon: '◈',
         title: 'Database Schema',
         body: 'ER diagram, field annotations, and any compliance-driven schema constraints documented.',
       },
       {
-        icon: 'infrastructure',
+        icon: '☁',
         title: 'Infrastructure',
         body: 'All cloud infrastructure under your credentials. No intermediary access. Our access revoked in writing.',
       },
       {
-        icon: 'pipeline',
+        icon: '⟳',
         title: 'CI/CD Pipeline',
         body: 'Configured in your environment. Commits to main trigger tests. Approved builds deploy to production.',
       },
       {
-        icon: 'monitoring',
+        icon: '◉',
         title: 'Monitoring & Alerting',
         body: 'Production monitoring directly accessible to you. Alerts go to you — not filtered through us.',
       },
       {
-        icon: 'runbook',
+        icon: '≡',
         title: 'Operational Runbook',
         body: 'Step-by-step: deployment, environment management, backup, and third-party service contacts.',
       },
@@ -265,12 +282,9 @@ export const fallbackLandingPageData: LandingPageData = {
       'No offshore sub-teams. No account manager layer. Named engineers.\nDirect access. Full accountability.',
     members: [
       {
-        initials: 'HR',
         name: 'Hamza Raza',
         role: 'AI & Backend Platform Engineer',
         badge: 'Previously at Google · Android OS Engineering',
-        oneLiner:
-          'The engineer who built systems at 3.9B device scale. That standard applies to your product.',
         points: [
           '9+ years scalable backend systems and AI-native platforms',
           'Android OS: deployed across 3.9 billion devices globally',
@@ -280,12 +294,9 @@ export const fallbackLandingPageData: LandingPageData = {
         photo: undefined,
       },
       {
-        initials: 'AW',
         name: 'Ali Wahab',
         role: 'AI & Full-Stack Product Engineer',
         badge: 'End-to-End Product Builder',
-        oneLiner:
-          'Full-stack from interface to infrastructure. He has shipped AI products used in production.',
         points: [
           'Full-stack across frontend, backend, and cloud infrastructure',
           'AI-native platforms, LLM orchestration, vector DB architecture',
@@ -295,29 +306,23 @@ export const fallbackLandingPageData: LandingPageData = {
         photo: undefined,
       },
       {
-        initials: 'TL',
         name: 'Technical Delivery Director',
-        role: 'Engagement Lead & Architecture Oversight',
+        role: 'Engagement Lead & Architecture',
         badge: 'Senior Oversight',
-        oneLiner:
-          'Your direct contact from kickoff to go-live. Every decision runs through one person.',
         points: [
-          'Owns every engagement from discovery to deployment',
-          'Direct founder contact throughout — not a PM layer',
+          'Owns discovery-to-deployment for every engagement',
+          'Direct founder contact throughout — not a project manager',
           'Fintech and regulated platform delivery background',
         ],
         featured: false,
         photo: undefined,
       },
       {
-        initials: 'UX',
         name: 'UX & Product Lead',
         role: 'Product Strategy & Interface Design',
         badge: 'Design Authority',
-        oneLiner:
-          'Every screen is approved by you before a single line of code is written.',
         points: [
-          'All screens approved before build begins',
+          'All screens approved before a single line of code is written',
           'Validates product decisions directly with founders',
           'Web, mobile, and regulated-sector UX',
         ],
@@ -325,12 +330,9 @@ export const fallbackLandingPageData: LandingPageData = {
         photo: undefined,
       },
       {
-        initials: 'CR',
         name: 'Corporate & Regulatory Lead',
         role: 'TruVis Corporate Services',
         badge: 'TruVis International Services',
-        oneLiner:
-          'Your product architecture and your corporate structure, aligned from Week 1.',
         points: [
           'Manages the parallel corporate setup and regulatory track',
           'Architecture aligned to compliance from Week 1',
@@ -382,7 +384,7 @@ export const fallbackLandingPageData: LandingPageData = {
       },
       {
         title: 'Corporate & Regulatory Track',
-        amount: 'Typically USD 5,000–15,000\nConfirmed after Week 1 assessment',
+        amount: 'Scoped separately',
         items: [
           'Confirmed after Week 1 regulatory assessment',
           'Corporate entity formation — 17+ jurisdictions',
@@ -399,7 +401,7 @@ export const fallbackLandingPageData: LandingPageData = {
     eyebrow: 'Selected Portfolio',
     title: 'Built before. At scale.\nAcross sectors.',
     intro:
-      'The team building your product has shipped systems used by billions of people. The same standard applies to your MVP.',
+      'Nine production systems — not prototypes — across AI, telecom, enterprise, streaming, commerce, and regulated data infrastructure.',
     items: [
       {
         name: 'Android OS · Google',
@@ -476,8 +478,8 @@ export const fallbackLandingPageData: LandingPageData = {
     ],
   },
   cta: {
-    eyebrow: 'How to Begin',
-    title: "Let's see if this fits.",
+    eyebrow: 'Next Steps',
+    title: 'Schedule a\n30-minute briefing.',
     description:
       "We'll tell you within the call whether this engagement is the right fit for your situation. If it's not, we'll tell you that too — and point you toward what would be better.",
     bullets: ['30 minutes', 'No commitment', 'Response within 2 business days'],
@@ -488,29 +490,6 @@ export const fallbackLandingPageData: LandingPageData = {
     formDescription:
       'We confirm within 2 business days. A briefing can typically be arranged within the same week.',
   },
-  portfolioDetails: [
-    {
-      title: 'Android OS / Google',
-      built: 'Foundational OS systems powering 3.9B active Android devices.',
-      outcome: 'Systems at planetary scale. Zero-defect deployment architecture.',
-      linkText: 'View project placeholder link',
-      linkHref: '#',
-    },
-    {
-      title: 'M Mind / Search Engine',
-      built: 'Search infrastructure processing 130M+ records.',
-      outcome: 'Sub-50ms query latency at production load.',
-      linkText: 'View project placeholder link',
-      linkHref: '#',
-    },
-    {
-      title: 'Kaaf.ai / AI Platform',
-      built: 'Vector database + LLM orchestration pipeline.',
-      outcome: 'Production AI inference at real-world latency requirements.',
-      linkText: 'View project placeholder link',
-      linkHref: '#',
-    },
-  ],
   footer: {
     companyName: 'TruVis Tech',
     tagline: 'is part of TruVis International Services',
