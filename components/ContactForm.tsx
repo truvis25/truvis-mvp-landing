@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useRef, useState, FormEvent, ChangeEvent } from 'react'
 
 interface FormData {
   name: string
   email: string
   company: string
   build: string
+  phone?: string
 }
 
 interface ContactFormProps {
@@ -21,15 +22,39 @@ export default function ContactForm({ dark = false }: ContactFormProps) {
     build: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const submittingRef = useRef(false)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('TruVis Tech — Briefing request submitted:', formData)
-    setSubmitted(true)
+    if (submittingRef.current) {
+      return
+    }
+
+    submittingRef.current = true
+
+    try {
+      const response = await fetch('/api/hubspot/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Submission failed')
+      }
+
+      setSubmitted(true)
+    } catch (_error) {
+      window.alert('We could not submit your request. Please try again.')
+    } finally {
+      submittingRef.current = false
+    }
   }
 
   const labelClass = `block text-sm font-semibold mb-1.5 ${dark ? 'text-white/80' : 'text-charcoal'}`
