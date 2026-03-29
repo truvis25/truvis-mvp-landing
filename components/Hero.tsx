@@ -92,7 +92,7 @@ export default function Hero({ content }: HeroProps) {
               <p className="text-sm text-slate-500 mb-6 leading-relaxed">
                 {content.formDescription}
               </p>
-              <ContactForm locationLabel="hero" />
+              <ContactForm />
             </div>
           </div>
 

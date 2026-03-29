@@ -72,7 +72,7 @@ export default function CTA({ content }: CTAProps) {
             <p className="text-sm text-slate-500 mb-6 leading-relaxed">
               {content.formDescription}
             </p>
-            <ContactForm locationLabel="cta_section" />
+            <ContactForm />
           </div>
         </div>
       </div>
